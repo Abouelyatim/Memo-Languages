@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/ibrahim/AppData/Local/Android/Sdk/platforms/android-30/data/res/layout/simple_list_item_1.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable-v24/bottom_sheet_background.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable-v24/ic_account_circle_white_24dp.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable-v24/ic_add_circle_outline_white_24dp.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable-v24/ic_baseline_add_circle_24.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable-v24/ic_baseline_arrow_back_ios_dark.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable-v24/ic_delete_24.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable-v24/ic_home_white_24dp.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable-v24/radius_button_blue.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable/ic_baseline_format_list_bulleted_24.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable/ic_baseline_language_24.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable/ic_baseline_translate_24.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable/ic_launcher_background.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/dropdown_item.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/fragment_dictionary.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/fragment_language.xml" value="0.18" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/fragment_save.xml" value="0.22" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/fragment_save_list.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/fragment_search.xml" value="0.22" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/fragment_search_list.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/layout_dictionary_list_item.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/layout_language_list_item.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/layout_save_list_item.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/layout_search_list_item.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/menu/main_bottom_navigation_menu.xml" value="0.20416666666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/dark</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/bleu</item>
+        <item name="md_color_button_text">@color/tealDark</item>
+    </style>
+
+    <style name="Button.Bleu" parent="ThemeOverlay.AppCompat">
+        <item name="colorPrimary">@color/bleu</item>
+    </style>
+</resources>
