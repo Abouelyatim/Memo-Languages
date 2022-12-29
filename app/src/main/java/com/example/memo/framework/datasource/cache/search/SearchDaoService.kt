@@ -9,4 +9,8 @@ interface SearchDaoService {
     suspend fun deleteSearch(pk: Int)
 
     suspend fun getAllSearches(): List<Search>
+
+    suspend fun updateSearchDismiss(pk: Int, dismiss: Int)
+
+    suspend fun getAcceptedSearchesDismiss(acceptedDismiss: Int): List<Search>
 }

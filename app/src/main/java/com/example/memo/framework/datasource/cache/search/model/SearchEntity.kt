@@ -23,6 +23,9 @@ class SearchEntity (
 
     @ColumnInfo(name = "url")
     val url: String,
+
+    @ColumnInfo(name = "dismiss")
+    val dismiss: Int,
 )
 
 fun SearchEntity.toSearch(): Search {
@@ -31,7 +34,8 @@ fun SearchEntity.toSearch(): Search {
         word = word,
         languageSource = languageSource,
         languageDestination = languageDestination,
-        url = url
+        url = url,
+        dismiss = dismiss
     )
 }
 
@@ -41,6 +45,7 @@ fun Search.toEntity(): SearchEntity {
         word = word,
         languageSource = languageSource,
         languageDestination = languageDestination,
-        url = url
+        url = url,
+        dismiss = dismiss
     )
 }

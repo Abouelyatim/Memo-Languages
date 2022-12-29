@@ -3,14 +3,15 @@ package com.example.memo.framework.presentation.main.save
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.example.memo.business.datasource.datasource.AppDataStoreSource
-import com.example.memo.business.interactors.search.ports.DeleteSearchFromCacheUseCase
-import com.example.memo.business.interactors.search.ports.GetSearchesFromCacheUseCase
-import com.example.memo.business.interactors.search.ports.InsertSearchToCacheUseCase
+import com.example.memo.business.interactors.notification.ports.DeleteNotificationFromCacheUseCase
+import com.example.memo.business.interactors.notification.ports.GetNotificationsFromCacheUseCase
+import com.example.memo.business.interactors.search.ports.*
 import com.example.memo.framework.presentation.BaseEvents
 import com.example.memo.framework.presentation.BaseViewModel
 import com.example.memo.framework.presentation.main.save.events.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import javax.sql.StatementEvent
 
 @HiltViewModel
 class SaveViewModel
@@ -21,12 +22,32 @@ constructor(
     val deleteSearchFromCacheUseCase: DeleteSearchFromCacheUseCase,
     val appDataStoreSource: AppDataStoreSource,
     val savedStateHandle: SavedStateHandle,
+    val deleteNotificationFromCacheUseCase: DeleteNotificationFromCacheUseCase,
+    val getNotificationsFromCacheUseCase: GetNotificationsFromCacheUseCase,
+    val updateSearchDismissFromCacheUseCase: UpdateSearchDismissFromCacheUseCase,
+    val searchWordUseCase: SearchWordUseCase,
 ): BaseViewModel() {
 
     val state: MutableLiveData<SaveState> = MutableLiveData(SaveState())
 
     override fun onTriggerEvent(event: BaseEvents) {
         when (event) {
+
+            is SaveEvents.OpenUrlOnBrowserEvent -> {
+                openUrlOnBrowser(event.word,event.url)
+            }
+
+            is SaveEvents.UpdateSearchDismissEvent ->{
+                updateSearchDismiss(event.pkSearch,event.oldDismiss)
+            }
+
+            is SaveEvents.DeleteNotificationEvent ->{
+                deleteNotification(event.pk)
+            }
+
+            is SaveEvents.GetNotificationsEvent ->{
+                getNotifications()
+            }
 
             is SaveEvents.UpdateWordEvent -> {
                 updateWord(event.word)

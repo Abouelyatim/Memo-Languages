@@ -6,6 +6,8 @@ import com.example.memo.business.datasource.cache.dictionary.DictionaryCacheData
 import com.example.memo.business.datasource.cache.dictionary.DictionaryCacheDataSourceImpl
 import com.example.memo.business.datasource.cache.language.LanguageCacheDataSource
 import com.example.memo.business.datasource.cache.language.LanguageCacheDataSourceImpl
+import com.example.memo.business.datasource.cache.notification.NotificationCacheDataSource
+import com.example.memo.business.datasource.cache.notification.NotificationCacheDataSourceImpl
 import com.example.memo.business.datasource.cache.search.SearchCacheDataSource
 import com.example.memo.business.datasource.cache.search.SearchCacheDataSourceImpl
 import com.example.memo.business.datasource.datasource.AppDataStoreSource
@@ -18,6 +20,9 @@ import com.example.memo.framework.datasource.cache.dictionary.database.Dictionar
 import com.example.memo.framework.datasource.cache.language.LanguageDaoService
 import com.example.memo.framework.datasource.cache.language.LanguageDaoServiceImpl
 import com.example.memo.framework.datasource.cache.language.database.LanguageDao
+import com.example.memo.framework.datasource.cache.notification.NotificationDaoService
+import com.example.memo.framework.datasource.cache.notification.NotificationDaoServiceImpl
+import com.example.memo.framework.datasource.cache.notification.database.NotificationDao
 import com.example.memo.framework.datasource.cache.search.SearchDaoService
 import com.example.memo.framework.datasource.cache.search.SearchDaoServiceImpl
 import com.example.memo.framework.datasource.cache.search.database.SearchDao
@@ -125,5 +130,28 @@ object AppModule {
         searchDao: SearchDao
     ): SearchDaoService {
         return SearchDaoServiceImpl(searchDao)
+    }
+
+    //Notification providers
+    @Singleton
+    @Provides
+    fun provideNotificationDao(db: AppDatabase): NotificationDao {
+        return db.getNotificationDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideNotificationCacheDataSource(
+        notificationDaoService: NotificationDaoService
+    ): NotificationCacheDataSource {
+        return NotificationCacheDataSourceImpl(notificationDaoService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideNotificationDaoService(
+        notificationDao: NotificationDao
+    ): NotificationDaoService {
+        return NotificationDaoServiceImpl(notificationDao)
     }
 }

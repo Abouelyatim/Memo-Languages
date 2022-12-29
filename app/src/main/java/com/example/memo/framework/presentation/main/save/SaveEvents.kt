@@ -5,6 +5,22 @@ import com.example.memo.framework.presentation.BaseEvents
 
 sealed class SaveEvents : BaseEvents() {
 
+    data class OpenUrlOnBrowserEvent(
+        val word: String,
+        val url: String
+    ): SaveEvents()
+
+    data class UpdateSearchDismissEvent(
+        val pkSearch: Int,
+        val oldDismiss: Int
+    ): SaveEvents()
+
+    data class DeleteNotificationEvent(
+        val pk: Int
+    ): SaveEvents()
+
+    object GetNotificationsEvent: SaveEvents()
+
     data class UpdateWordEvent(
         val word: String
     ): SaveEvents()

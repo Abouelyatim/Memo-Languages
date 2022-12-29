@@ -22,4 +22,12 @@ constructor(
     override suspend fun getAllSearches(): List<Search> {
         return searchDaoService.getAllSearches()
     }
+
+    override suspend fun updateSearchDismiss(pk: Int, dismiss: Int) {
+        return searchDaoService.updateSearchDismiss(pk,dismiss)
+    }
+
+    override suspend fun getAcceptedSearchesDismiss(acceptedDismiss: Int): List<Search> {
+        return searchDaoService.getAcceptedSearchesDismiss(acceptedDismiss)
+    }
 }

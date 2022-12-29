@@ -19,4 +19,16 @@ interface SearchDao {
         SELECT * FROM search
         """)
     suspend fun getAllSearches(): List<SearchEntity>
+
+    @Query("""
+        UPDATE search SET dismiss = :dismiss
+        WHERE pk = :pk
+        """)
+    suspend fun updateSearchDismiss(pk: Int, dismiss: Int)
+
+    @Query("""
+        SELECT * FROM search
+        WHERE dismiss <= :acceptedDismiss
+        """)
+    suspend fun getAcceptedSearchesDismiss(acceptedDismiss: Int): List<SearchEntity>
 }

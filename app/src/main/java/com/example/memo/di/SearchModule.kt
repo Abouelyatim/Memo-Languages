@@ -2,14 +2,8 @@ package com.example.memo.di
 
 import android.app.Application
 import com.example.memo.business.datasource.cache.search.SearchCacheDataSource
-import com.example.memo.business.interactors.search.DeleteSearchFromCache
-import com.example.memo.business.interactors.search.GetSearchesFromCache
-import com.example.memo.business.interactors.search.InsertSearchToCache
-import com.example.memo.business.interactors.search.SearchWord
-import com.example.memo.business.interactors.search.ports.DeleteSearchFromCacheUseCase
-import com.example.memo.business.interactors.search.ports.GetSearchesFromCacheUseCase
-import com.example.memo.business.interactors.search.ports.InsertSearchToCacheUseCase
-import com.example.memo.business.interactors.search.ports.SearchWordUseCase
+import com.example.memo.business.interactors.search.*
+import com.example.memo.business.interactors.search.ports.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,5 +44,13 @@ object SearchModule {
         app: Application
     ): SearchWordUseCase {
         return SearchWord(app)
+    }
+
+    @Singleton
+    @Provides
+    fun provideUpdateSearchDismissFromCache(
+        searchCacheDataSource: SearchCacheDataSource
+    ): UpdateSearchDismissFromCacheUseCase {
+        return UpdateSearchDismissFromCache(searchCacheDataSource)
     }
 }

@@ -25,4 +25,12 @@ constructor(
     override suspend fun getAllSearches(): List<Search> {
         return searchDao.getAllSearches().map { it.toSearch() }
     }
+
+    override suspend fun updateSearchDismiss(pk: Int, dismiss: Int) {
+        return searchDao.updateSearchDismiss(pk,dismiss)
+    }
+
+    override suspend fun getAcceptedSearchesDismiss(acceptedDismiss: Int): List<Search> {
+        return searchDao.getAcceptedSearchesDismiss(acceptedDismiss).map { it.toSearch() }
+    }
 }

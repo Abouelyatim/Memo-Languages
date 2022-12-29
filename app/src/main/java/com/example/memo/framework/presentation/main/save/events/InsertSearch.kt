@@ -15,7 +15,8 @@ fun SaveViewModel.insertSearch(word: String, url:String){
                 word = word,
                 languageSource = state.languageSource,
                 languageDestination = state.languageDestination,
-                url = url
+                url = url,
+                dismiss = 0
             )
             if(search.isValid()){//this validation should be inside interactor to centralize logic so easy to test
                 insertSearchToCacheUseCase.insertSearchToCache(

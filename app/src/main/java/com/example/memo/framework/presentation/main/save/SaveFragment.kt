@@ -1,10 +1,21 @@
 package com.example.memo.framework.presentation.main.save
 
+import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,11 +24,15 @@ import com.example.memo.business.domain.models.Language
 import com.example.memo.business.domain.utils.StateMessageCallback
 import com.example.memo.business.domain.utils.isNotEmptyAndNotBlank
 import com.example.memo.databinding.FragmentSaveBinding
+import com.example.memo.framework.presentation.main.NotificationService
 import com.example.memo.framework.presentation.main.language.LanguageEvents
 import com.example.memo.framework.presentation.main.language.LanguageViewModel
 import com.example.memo.framework.presentation.main.search.SearchEvents
 import com.example.memo.framework.presentation.main.search.SearchViewModel
 import com.example.memo.framework.presentation.util.processQueue
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class SaveFragment : BaseSaveFragment() {
 
@@ -36,6 +51,7 @@ class SaveFragment : BaseSaveFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSaveBinding.inflate(layoutInflater)
+        handleNotificationActions()
         return binding.root
     }
 
@@ -47,6 +63,94 @@ class SaveFragment : BaseSaveFragment() {
         saveSearch()
         getSavedWordAndUrl()
         allSearches()
+        setNotification()
+        getNotifications()
+    }
+
+    private fun handleNotificationActions() {
+        NotificationService.notificationServiceListener = object : NotificationService.NotificationServiceListener {
+            override fun onVisitUrlAction(pk: Int,word:String,url:String) {
+                viewModel.onTriggerEvent(SaveEvents.DeleteNotificationEvent(pk))
+                NotificationManagerCompat.from(requireContext()).cancel(pk)
+                //viewModel.onTriggerEvent(SaveEvents.OpenUrlOnBrowserEvent(word, url)
+            }
+
+            override fun onDismissAction(pk:Int,pkSearch: Int, oldDismiss: Int) {
+                viewModel.onTriggerEvent(SaveEvents.DeleteNotificationEvent(pk))
+                NotificationManagerCompat.from(requireContext()).cancel(pk)
+                viewModel.onTriggerEvent(SaveEvents.UpdateSearchDismissEvent(pkSearch, oldDismiss))
+            }
+        }
+    }
+
+    private fun getNotifications() {
+        viewModel.onTriggerEvent(SaveEvents.GetNotificationsEvent)
+    }
+
+    private fun setNotification() {
+        viewModel.state.observe(viewLifecycleOwner) { state ->
+
+            binding.buttonSearchNotification.setOnClickListener {
+                state.notifications.forEach {
+                    showNotification(it.pk!!,it.pkSearch,it.dismiss,it.word,it.url,"Rafraîchissez votre mémoire avec le mot ${it.word}")
+                }
+            }
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun showNotification(notificationId:Int,pkSearch:Int,oldDismiss:Int,title:String,url:String,text:String) {
+        createNotificationChannel()
+
+        val date = Date()
+
+        val intentDismiss = Intent(requireContext(),NotificationService::class.java)
+            .setAction(NotificationService.DISMISS_ACTION)
+            .putExtra(NotificationService.NOTIFICATION_PK_SEARCH,pkSearch)
+            .putExtra(NotificationService.NOTIFICATION_OLD_DISMISS,oldDismiss)
+            .putExtra(NotificationService.NOTIFICATION_PK,notificationId)
+        val pendingIntentDismiss = PendingIntent.getService(
+            requireContext(),
+            SimpleDateFormat("mmssSSS").format(date).toInt(),
+            intentDismiss,
+            0)
+
+        val intentVisitUrl = Intent(requireContext(),NotificationService::class.java)
+            .setAction(NotificationService.VISIT_URL_ACTION)
+            .putExtra(NotificationService.NOTIFICATION_PK,notificationId)
+            .putExtra(NotificationService.NOTIFICATION_WORD,title)
+            .putExtra(NotificationService.NOTIFICATION_URL,url)
+        val pendingIntentVisitUrl = PendingIntent.getService(
+            requireContext(),
+            SimpleDateFormat("mmssSSS").format(date).toInt(),
+            intentVisitUrl,
+            0)
+
+
+        val notificationBuilder = NotificationCompat.Builder(requireContext(),NotificationService.NOTIFICATION_CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_notification)
+            .setContentTitle(title)
+            .setContentText(text)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
+            .setAutoCancel(true)
+            .addAction(R.drawable.ic_notification,"Ecarter",pendingIntentDismiss)
+            .addAction(R.drawable.ic_notification,"Visiter site web",pendingIntentVisitUrl)
+
+        val notificationManagerCompat = NotificationManagerCompat.from(requireContext())
+        notificationManagerCompat.notify(notificationId,notificationBuilder.build())
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val name  = "name"
+            val description = "description"
+
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val notificationChannel = NotificationChannel("channelId",name,importance)
+            notificationChannel.description = description
+            val notificationManager = requireActivity().getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(notificationChannel)
+        }
     }
 
     private fun allSearches() {
