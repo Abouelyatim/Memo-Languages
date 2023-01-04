@@ -2,6 +2,7 @@ package com.example.memo.di
 
 import com.example.memo.business.datasource.cache.notification.NotificationCacheDataSource
 import com.example.memo.business.datasource.cache.search.SearchCacheDataSource
+import com.example.memo.business.datasource.datasource.AppDataStoreSource
 import com.example.memo.business.interactors.notification.DeleteNotificationFromCache
 import com.example.memo.business.interactors.notification.GetNotificationsFromCache
 import com.example.memo.business.interactors.notification.ports.DeleteNotificationFromCacheUseCase
@@ -28,8 +29,9 @@ object NotificationModule {
     @Provides
     fun provideGetNotificationsFromCache(
         searchCacheDataSource: SearchCacheDataSource,
-        notificationCacheDataSource: NotificationCacheDataSource
+        notificationCacheDataSource: NotificationCacheDataSource,
+        appDataStoreSource: AppDataStoreSource
     ): GetNotificationsFromCacheUseCase {
-        return GetNotificationsFromCache(searchCacheDataSource,notificationCacheDataSource)
+        return GetNotificationsFromCache(searchCacheDataSource,notificationCacheDataSource,appDataStoreSource)
     }
 }

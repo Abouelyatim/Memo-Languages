@@ -19,6 +19,7 @@
         <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable/ic_baseline_notifications_none_24.xml" value="0.106" />
         <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.106" />
         <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.106" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.106" />
         <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable/ic_baseline_translate_24.xml" value="0.106" />
         <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/drawable/ic_launcher_background.xml" value="0.106" />
         <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
@@ -29,6 +30,7 @@
         <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/fragment_save_list.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/fragment_search.xml" value="0.22" />
         <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/fragment_search_list.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/fragment_settings.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/layout_dictionary_list_item.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/layout_language_list_item.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/ibrahim/Desktop/Memo/app/src/main/res/layout/layout_save_list_item.xml" value="0.17074275362318841" />

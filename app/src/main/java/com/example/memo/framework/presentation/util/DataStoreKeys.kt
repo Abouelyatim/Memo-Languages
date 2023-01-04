@@ -6,6 +6,8 @@ class DataStoreKeys {
 
         // DataStore Keys
         val SEARCH_WORD = "com.example.memo.SEARCH_WORD"
+        val NOTIFICATION_NUMBER = "com.example.memo.NOTIFICATION_NUMBER"
+        val DISMISS_NUMBER = "com.example.memo.DISMISS_NUMBER"
 
     }
 }
